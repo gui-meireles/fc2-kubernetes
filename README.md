@@ -26,3 +26,12 @@ Agora rode: `docker run --rm -p 80:80 guilhermemmnn/hello-go`.
 E se você abrir o seu navegador e digitar localhost, você verá **Hello Guilherme**.
 
 Caso queira, você pode subir essa imagem no seu DockerHub: `docker push {usuario}/hello-go`
+
+Agora, vamos criar nosso primeiro pod: `kubectl apply -f k8s/pod.yaml`, podemos
+verificar os pods com o comando: `kubectl get pods`.
+
+Podemos acessar nosso pod com o comando: `kubectl port-forward pod/goserver 8000:80`,
+que vai direcionar a porta 8000 da nossa máquina para a porta 80 do pod selecionado, agora
+abra o seu navegador e digite `localhost:8000`.
+
+> Para deletar o pod, utilize o comando: `kubectl delete pod goserver`.
