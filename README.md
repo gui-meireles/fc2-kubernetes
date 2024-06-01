@@ -75,3 +75,18 @@ Podemos utilizar o famoso **Deployment**, ele fica no topo da hierarquia sendo:
 
 **E a vantagem é** que caso você **altere a versão da imagem** no `deployment.yaml`, basta você digitar o comando:
 `kubectl apply -f k8s/deployment.yaml` e ele criará um novo replicaset com novos pods na nova versão.
+
+---
+
+### Rollout de versões antigas
+
+Caso você queira voltar um deployment antigo, você tem a possibilidade.
+
+Com o comando: `kubectl rollout history deployment {nome_do_deployment}`, conseguimos
+ver as versões/revisions que já foram utilizadas no deployment.
+
+E para fazer o rollout desse deployment para a versão passada,
+utilize o comando: `kubectl rollout undo deployment {nome_do_deployment}`.
+
+> Dica: Caso queira fazer o rollout de uma versão específica, você pode utilizar
+> o comando: `kubectl rollout undo deployment {nome_do_deployment} --to-revision={numero_revision}`.
