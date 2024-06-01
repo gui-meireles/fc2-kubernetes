@@ -36,7 +36,9 @@ abra o seu navegador e digite `localhost:8000`.
 
 > Para deletar o pod, utilize o comando: `kubectl delete pod goserver`.
 
- ---
+---
+
+### O que é ReplicaSet ?
 
 - **Obs: Caso você queira subir mais de um pod, podemos usar o ReplicaSet e para subir
 ele, certifique-se que não tenha nenhum pod rodando e siga os passos abaixo:**
@@ -55,3 +57,21 @@ você deve deletar todos os pods que estão rodando a versão antiga para ele ba
 > Você pode ver qual imagem cada pod está rodando com o comando: `kubectl describe pod {nome_do_pod}`.
 > 
 > E deletá-lo com o comando: `kubectl delete pod {nome_do_pod}`.
+
+#### Como solucionar o problema do ReplicaSet ?
+
+Podemos utilizar o famoso **Deployment**, ele fica no topo da hierarquia sendo:
+
+**Deployment -> ReplicaSet -> Pod**
+
+> Antes de iniciar com o Deployment, certifique-se que não tenha o replicaset anterior rodando,
+> para isso utilize o comando `kubectl get replicaset`.
+>
+> Caso tenha utilize o comando: `kubectl delete replicaset {nome_da_replicaset}`.
+> 
+> Logo após vamos criar o nosso **Deployment** com o comando: `kubectl apply -f k8s/deployment.yaml`.
+> 
+> E para verificarmos ele rodando: `kubectl get deployments`.
+
+**E a vantagem é** que caso você **altere a versão da imagem** no `deployment.yaml`, basta você digitar o comando:
+`kubectl apply -f k8s/deployment.yaml` e ele criará um novo replicaset com novos pods na nova versão.
