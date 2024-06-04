@@ -140,7 +140,7 @@ e para acessar o endpoint da nossa service que foi criada acima, digite:
 
 ---
 
-### O que é NodePort ?
+### Como funciona o tipo NodePort da service ?
 
 **Serve para expor uma porta para fora do Cluster.**
 
@@ -153,3 +153,20 @@ que redirecionará para uma `targetPort`.
 ![img.png](readme_images/img.png)
 
 > Podemos escolher uma nodePort entre **30000** à **32767**.
+
+---
+
+### Como funciona o tipo Load Balancer da service ?
+
+**O tipo LoadBalancer cria um ip externo para acessarmos a service**
+
+Muito utilizado para expor um serviço na internet com auxílio de um provedor de nuvem (AWS, Google Cloud).
+
+Para criarmos, certifique-se de ter deletado a service do exemplo anterior, para isso use o comando:
+`kubectl delete service goserver-service`.
+
+E para criar: `kubectl apply -f k8s/serviceLoadBalancer.yaml`.
+
+> Caso tivessemos rodando essa service em uma AWS, ele geraria um `EXTERNAL-IP`, que permitiria a conexão
+> de qualquer pessoa que tivesse esse **IP**.
+> ![img.png](readme_images/loadbalancer.png)
