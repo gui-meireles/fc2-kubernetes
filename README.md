@@ -137,3 +137,19 @@ Para isso, utilizamos o comando: `kubectl proxy --port=8080`. <br>
 E podemos acessar pelo navegador: `localhost:8080`, você verá alguns endpoints que o kubernetes oferece,
 e para acessar o endpoint da nossa service que foi criada acima, digite:
 `localhost:8080/api/v1/namespaces/default/services/goserver-service`.
+
+---
+
+### O que é NodePort ?
+
+**Serve para expor uma porta para fora do Cluster.**
+
+Utilizado mais para demonstração, pois ele libera uma porta para todos os nodes da service, ou seja,
+caso alguém tenha o IP de um dos nodes(máquinas) e a porta, ele conseguirá entrar dentro da service,
+que redirecionará para uma `targetPort`.
+
+- Abaixo podemos ver como é feito a criação de uma service com o tipo **NodePort**:
+
+![img.png](readme_images/img.png)
+
+> Podemos escolher uma nodePort entre **30000** à **32767**.
