@@ -7,5 +7,6 @@ spec:
     app: goserver       # Vai pegar todos os pods que tiverem com o nome 'goserver'
   type: ClusterIP
   ports:
-    - port: 80          # Indicar qual a porta que nossa aplicação Go está rodando
+    - port: 80          # Indica qual a porta da nossa service
+      targetPort: 8000  # Indica qual a porta da nossa aplicação/pod
       protocol: TCP

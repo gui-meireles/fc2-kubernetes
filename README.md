@@ -98,7 +98,12 @@ utilize o comando: `kubectl rollout undo deployment {nome_do_deployment}`.
 A service é a porta de entrada da nossa aplicação e serve para acessarmos nossos pods. <br>
 Funciona como um _**load-balancer**_ em que ela faz o gerenciamento dos acessos e direciona para nossos pods
 
-### Criando service
+### Criando service com ClusterIP
+
+Esse tipo de Service é utilizado para permitir a comunicação entre diferentes Pods e outros componentes do cluster.
+
+O **IP** não é acessível de **_fora_** do cluster, você pode utilizar o **nome da service** para os pods conseguirem se comunicar e
+o **ClusterIP** distribui o tráfego entre os Pods que estão associados ao Service (Load balancer).
 
 No terminal, rode o comando: `kubectl apply -f k8s/service.yaml`.
 Assim que criado, podemos checar a service com: `kubectl get svc`.
@@ -108,3 +113,18 @@ Temos que fazer um direcionamento de porta para conseguirmos acessar o ip do clu
 utilize o comando: `kubectl port-forward svc/goserver-service 8000:80`.
 
 Então podemos acessar via navegador com localhost:8080 ou com o comando: `curl http://localhost:8000`.
+
+### Como direcionar a porta do nosso container ?
+
+As vezes, criamos nossa service na porta `X` e nosso pod/aplicação está na porta `Y`, como é feito esse
+direcionamento de portas?
+
+**E a resposta é SIMPLES:**
+
+- Utilizamos o `targetPort` em nosso `service.yaml`:
+
+![target-port.png](readme_images%2Ftarget-port.png)
+
+> **Ou seja**, o `port` é a porta da nossa service, e `targetPort` é a porta do nosso container que está a aplicação.
+
+---
