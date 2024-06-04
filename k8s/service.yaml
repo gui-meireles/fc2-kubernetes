@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service
+spec:
+  selector:
+    app: goserver       # Vai pegar todos os pods que tiverem com o nome 'goserver'
+  type: ClusterIP
+  ports:
+    - port: 80          # Indicar qual a porta que nossa aplicação Go está rodando
+      protocol: TCP

@@ -90,3 +90,21 @@ utilize o comando: `kubectl rollout undo deployment {nome_do_deployment}`.
 
 > Dica: Caso queira fazer o rollout de uma versão específica, você pode utilizar
 > o comando: `kubectl rollout undo deployment {nome_do_deployment} --to-revision={numero_revision}`.
+
+---
+
+## Services
+
+A service é a porta de entrada da nossa aplicação e serve para acessarmos nossos pods. <br>
+Funciona como um _**load-balancer**_ em que ela faz o gerenciamento dos acessos e direciona para nossos pods
+
+### Criando service
+
+No terminal, rode o comando: `kubectl apply -f k8s/service.yaml`.
+Assim que criado, podemos checar a service com: `kubectl get svc`.
+
+**Como acessar o cluster de fora?**<br>
+Temos que fazer um direcionamento de porta para conseguirmos acessar o ip do cluster, para isso
+utilize o comando: `kubectl port-forward svc/goserver-service 8000:80`.
+
+Então podemos acessar via navegador com localhost:8080 ou com o comando: `curl http://localhost:8000`.
