@@ -128,3 +128,12 @@ direcionamento de portas?
 > **Ou seja**, o `port` é a porta da nossa service, e `targetPort` é a porta do nosso container que está a aplicação.
 
 ---
+
+### Acessando a api do Kubernetes por Proxy
+
+Ele vai gerar um proxy da nossa máquina para a api do Kubernetes e assim podemos ter acesso na api do Kubernetes.
+
+Para isso, utilizamos o comando: `kubectl proxy --port=8080`. <br>
+E podemos acessar pelo navegador: `localhost:8080`, você verá alguns endpoints que o kubernetes oferece,
+e para acessar o endpoint da nossa service que foi criada acima, digite:
+`localhost:8080/api/v1/namespaces/default/services/goserver-service`.
