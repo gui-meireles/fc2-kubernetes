@@ -3,6 +3,7 @@
 ## Criando cluster k8s com o 'kind'
 
 Instale o kind em sua máquina: https://kind.sigs.k8s.io/docs/user/quick-start/
+
 Instale o kubernetes em sua máquina: https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
 ---
 
