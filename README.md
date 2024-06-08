@@ -188,3 +188,32 @@ puxar na nossa aplicação, como na imagem abaixo:
 - Aplique essa configuração no Cluster com o comando: `kubectl apply -f k8s/deployment.yaml`.
 - Faça o redirecionamento da porta do cluster com a sua máquina: `kubectl port-forward svc/goserver-service 8000:80`.
 - Acesse pelo navegador: `localhost:8000` e veja a mágica acontecer!
+
+## Como apartar as variáveis de ambiente?
+
+Podemos criar um arquivo `yaml` com o **kind=ConfigMap**, igual ao arquivo `configmap-env.yaml` e
+setar nossas variáveis lá dentro.
+
+> E com um pequeno ajuste no nosso arquivo `deployment.yaml` podemos capturar a variável do nosso arquivo
+`configmap-env.yaml`:
+>
+> ![img.png](readme_images/env.png)
+
+**Agora iremos subir esse ajuste no Kubernetes, para isso:**
+
+- Rode o comando: `kubectl apply -f k8s/configmap-env.yaml` e como mudamos o deployment precisamos subir
+ele também: `kubectl apply -f k8s/deployment.yaml`
+
+- Para testar, precisamos conectar uma porta da nossa máquina com a do Cluster: `kubectl port-forward svc/goserver-service 8000:80`
+
+### E se tivermos muitas variáveis?
+
+Caso tenha _**muitas variáveis de ambiente**_, nosso arquivo `deployment.yaml` ficaria **muito poluído** se
+seguirmos no exemplo acima, para isso podemos utilizar o seguinte formato:
+![img.png](readme_images/env-2.png)
+
+> Com o envFrom, chamamos nosso arquivo `configmap-env.yaml` com o nome do seu metadata e assim o nosso
+> `deployment.yaml` terá TODAS as variáveis do arquivo `configmap-env.yaml`. 
+> 
+> E para aplicar, basta rodar os comandos novamente: `kubectl apply -f k8s/configmap-env.yaml` e
+> `kubectl apply -f k8s/deployment.yaml`.

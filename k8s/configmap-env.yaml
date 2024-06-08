@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: goserver-env
+data:
+  NAME: "gui-meireles"    # O nome da variável não precisa ser em letras maiúsculas
+  AGE: "21"
