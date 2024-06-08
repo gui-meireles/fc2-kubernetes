@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "guilhermemmnn/hello-go:v5"
+          image: "guilhermemmnn/hello-go:v6"
           envFrom:
             - configMapRef:             # Puxa todas as variáveis de ambiente do arquivo abaixo para nossa aplicação
                 name: goserver-env      # Nome do metadata que esta no arquivo configmap-env.yaml

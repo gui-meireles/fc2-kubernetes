@@ -262,3 +262,15 @@ utilizando o _Windows_, rode esse comando pelo terminal do **_git Bash_**
 - E assim, conseguimos ver o nosso usuário pelo navegador: `localhost:8000/secret`.
 
 ---
+
+## Health check
+
+### Criando endpoint Healthz
+
+Vamos criar um endpoint na nossa aplicação Go para ver de tempos em tempos se ela está saudável.
+
+Para isso, criamos uma função em nosso `server.go` bem simples para checar o tempo de início da nossa aplicação, e caso
+a vida útil da nossa aplicação passe de 25 segundos, ele dará um erro **500** e ao acessar pelo `localhost:8000/healthz`,
+veremos a duration da nossa aplicação.
+
+> Lembre sempre de checar se o build da imagem do server.go está com a função `Healthz`.
