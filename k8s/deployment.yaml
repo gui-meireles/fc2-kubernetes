@@ -16,10 +16,13 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "guilhermemmnn/hello-go:v4"
+          image: "guilhermemmnn/hello-go:v5"
           envFrom:
-            - configMapRef:
-                name: goserver-env    # Nome do metadata do arquivo configmap-env.yaml
+            - configMapRef:             # Puxa todas as variáveis de ambiente do arquivo abaixo para nossa aplicação
+                name: goserver-env      # Nome do metadata que esta no arquivo configmap-env.yaml
+
+            - secretRef:                # Puxa todas as secrets do arquivo abaixo para nossa aplicação
+                name: goserver-secret   # Nome do metadata que esta no arquivo secret.yaml
 
           volumeMounts:
             - mountPath: "/go/myfamily"

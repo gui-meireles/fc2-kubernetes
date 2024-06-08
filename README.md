@@ -243,3 +243,22 @@ o **ConfigMap** na sua aplicação:
 > Caso você queira acessar o pod para ver se os arquivos foram criados, você pode rodar o comando:
 > `kubectl exec -it {nome_do_pod} -- bash`. <br>
 > Ou caso queira ver o log de erro, utilize: `kubectl logs {nome_do_pod}`.
+
+## Como guardar uma secret ?
+
+Para guardar dados sensíveis como senhas e usuários, podemos utilizar o arquivo `secret.yaml` com o **kind=Secret**
+e temos que criptografar os dados em `base64`, você pode utilizar o comando: `echo "guilherme" | base64` e caso esteja
+utilizando o _Windows_, rode esse comando pelo terminal do **_git Bash_**
+
+- Após configurar sua `secret.yaml`, vamos configurar o arquivo `deployment.yaml`:
+![img.png](readme_images/img_4.png)
+
+
+- E por fim seguimos o mesmo passo a passo: <br>
+  `kubectl apply -f k8s/secret.yaml`. <br>
+  `kubectl apply -f k8s/deployment.yaml`. <br>
+  `kubectl port-forward svc/goserver-service 8000:80`.
+
+- E assim, conseguimos ver o nosso usuário pelo navegador: `localhost:8000/secret`.
+
+---
