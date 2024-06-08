@@ -274,3 +274,16 @@ a vida útil da nossa aplicação passe de 25 segundos, ele dará um erro **500*
 veremos a duration da nossa aplicação.
 
 > Lembre sempre de checar se o build da imagem do server.go está com a função `Healthz`.
+
+#### Utilizando o Liveness
+
+O **liveness probe** é responsável por verificar se um contêiner está em execução corretamente. <br>
+Ele é utilizado para **determinar** se um contêiner **precisa ser reiniciado**.
+
+Vamos configurá-lo em nosso `deployment.yaml`:
+![img.png](readme_images/img_5.png)
+
+E podemos ir checando a reinicialização do nossos pods pelo comando: `kubectl get pods`.
+> Como nossa aplicação está configurada para emitir um erro 500 depois de 25 segundos no ar,
+> o nosso pod será reiniciado após esse período **+** o tempo que roda nosso teste no `deployment.yaml`.
+
