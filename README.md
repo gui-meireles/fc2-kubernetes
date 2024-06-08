@@ -217,3 +217,29 @@ seguirmos no exemplo acima, para isso podemos utilizar o seguinte formato:
 > 
 > E para aplicar, basta rodar os comandos novamente: `kubectl apply -f k8s/configmap-env.yaml` e
 > `kubectl apply -f k8s/deployment.yaml`.
+
+### Agora vamos criar um volume para as variáveis
+
+Suponha que sua aplicação precise ler um arquivo `.txt` e esse arquivo é **dinâmico**, para evitar toda vez que
+esse arquivo tiver uma alteração e você precisar **buildar** a aplicação e **subir** no DockerHub, você pode injetar
+o **ConfigMap** na sua aplicação:
+
+- Para isso, criamos uma função na nossa aplicação **Go** que vai ler um arquivo `.txt`:
+![img.png](readme_images/img_3.png)
+
+- Em seguida, vamos criar nosso arquivo **.yaml** que terá o texto dinâmico:
+![img_1.png](readme_images/img_1.png)
+
+- Em seguida, configuramos nosso `deployment.yaml`:
+> ![img_2.png](readme_images/img_2.png)
+> Importante que a sua imagem do hello-go esteja com a nova função de ler arquivo.
+
+- E por fim aplicamos essas configurações no nosso Cluster:
+`kubectl apply -f k8s/configmap-family.yaml`. <br>
+`kubectl apply -f k8s/deployment.yaml`. <br>
+`kubectl port-forward svc/goserver-service 8000:80`.
+- E assim, conseguimos ver os nomes pelo navegador: `localhost:8000/configmap`.
+
+> Caso você queira acessar o pod para ver se os arquivos foram criados, você pode rodar o comando:
+> `kubectl exec -it {nome_do_pod} -- bash`. <br>
+> Ou caso queira ver o log de erro, utilize: `kubectl logs {nome_do_pod}`.
