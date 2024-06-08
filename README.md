@@ -170,3 +170,21 @@ E para criar: `kubectl apply -f k8s/serviceLoadBalancer.yaml`.
 > Caso tivessemos rodando essa service em uma AWS, ele geraria um `EXTERNAL-IP`, que permitiria a conexão
 > de qualquer pessoa que tivesse esse **IP**.
 > ![img.png](readme_images/loadbalancer.png)
+
+---
+
+## O que são variáveis de ambiente
+
+Com variáveis de ambiente conseguimos proteger dados sensíveis como senhas, ips, etc... no arquivo yaml e
+puxar na nossa aplicação, como na imagem abaixo:
+
+> **Aqui estamos puxando as variáveis de `NAME` e `AGE`.**
+![img.png](readme_images/imagem-go.png)
+
+> Aqui estamos **configurando as variáveis e seus values** no arquivo `deployment.yaml`, certifique-se de gerar
+> uma imagem do seu **Dockerfile** e subir ele no _DockerHub_ e ajustar no arquivo do `deployment.yaml`.
+![img.png](readme_images/deployment.png)
+
+- Aplique essa configuração no Cluster com o comando: `kubectl apply -f k8s/deployment.yaml`.
+- Faça o redirecionamento da porta do cluster com a sua máquina: `kubectl port-forward svc/goserver-service 8000:80`.
+- Acesse pelo navegador: `localhost:8000` e veja a mágica acontecer!
