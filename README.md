@@ -5,6 +5,7 @@
 Instale o kind em sua máquina: https://kind.sigs.k8s.io/docs/user/quick-start/
 
 Instale o kubernetes em sua máquina: https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+
 ---
 
 Para subirmos o nosso cluster com as configurações do `kind.yaml`, digitamos no terminal:
