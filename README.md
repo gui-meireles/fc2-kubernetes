@@ -308,3 +308,15 @@ antes de ser incluído no balanceamento de carga.
 
 Para utilizarmos ambos juntos, precisamos deixar que os testes do liveness e readiness estejam conciliados em tempos, pois o
 readiness desvia o tráfego caso tenha erro e o liveness recria o pod caso a aplicação esteja com erro.
+
+### Qual a melhor maneira de combinarmos o liveness e readiness?
+
+Temos o famoso `startupProbe`, que é um tipo de sonda utilizada no Kubernetes para verificar o estado inicial
+de um contêiner quando ele é iniciado.
+
+Ou seja, só depois que ele verificar que o container está pronto, que ele vai liberar os testes do **liveness e readiness**.
+![img.png](readme_images/startup-probe.png)
+
+> Ele possui as mesmas configurações que o **liveness e readiness**, porém devemos nos atentar ao seguinte detalhe que é o
+`failureThreshold`, devemos configurar pelo tempo máximo que nossa aplicação demora para subir, e com isso podemos remover
+a função de `initialDelaySeconds` no **liveness e readiness**.
