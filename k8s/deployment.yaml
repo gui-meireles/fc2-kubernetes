@@ -16,15 +16,25 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "guilhermemmnn/hello-go:v6"
-          livenessProbe:
+          image: "guilhermemmnn/hello-go:v7"
+
+          readinessProbe:
             httpGet:
               path: /healthz
-              port: 8000                # Porta da nossa aplicação
-            periodSeconds: 5            # Período em segundos que ele executará um teste
-            failureThreshold: 1         # Quantas vezes ele precisa falhar para reiniciar a aplicação
-            timeoutSeconds: 1           # Limite em segundos para completar a requisição, caso não complete ele conta uma falha
-            successThreshold: 1         # Quantas vezes a requisição precisa estar OK para encerrar o teste
+              port: 8000
+            periodSeconds: 3
+            failureThreshold: 1
+            initialDelaySeconds: 10      # Aguarda X segundos para começar os testes do readinessProbe
+
+#          livenessProbe:
+#            httpGet:
+#              path: /healthz
+#              port: 8000                # Porta da nossa aplicação
+#            periodSeconds: 5            # Período em segundos que ele executará um teste
+#            failureThreshold: 1         # Quantas vezes ele precisa falhar para reiniciar a aplicação
+#            timeoutSeconds: 1           # Limite em segundos para completar a requisição, caso não complete ele conta uma falha
+#            successThreshold: 1         # Quantas vezes a requisição precisa estar OK para encerrar o teste
+
           envFrom:
             - configMapRef:             # Puxa todas as variáveis de ambiente do arquivo abaixo para nossa aplicação
                 name: goserver-env      # Nome do metadata que esta no arquivo configmap-env.yaml

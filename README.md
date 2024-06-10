@@ -277,7 +277,7 @@ veremos a duration da nossa aplicação.
 
 > Lembre sempre de checar se o build da imagem do server.go está com a função `Healthz`.
 
-#### Utilizando o Liveness
+### Utilizando o Liveness
 
 O **liveness probe** é responsável por verificar se um contêiner está em execução corretamente. <br>
 Ele é utilizado para **determinar** se um contêiner **precisa ser reiniciado**.
@@ -289,3 +289,16 @@ E podemos ir checando a reinicialização do nossos pods pelo comando: `kubectl 
 > Como nossa aplicação está configurada para emitir um erro 500 depois de 25 segundos no ar,
 > o nosso pod será reiniciado após esse período **+** o tempo que roda nosso teste no `deployment.yaml`.
 
+### Utilizando o Readiness
+
+Ele é usado para **garantir** que um contêiner esteja **totalmente inicializado** e pronto para lidar com solicitações
+antes de ser incluído no balanceamento de carga.
+
+- Para isso, configuramos nossa aplicação Go em que, caso tenha menos de 10 segundos de vida, ela emita o erro 500:
+![img.png](readme_images/app-go-adjust.png)
+
+- Logo após modificar a aplicação, geramos o build e o push da imagem.
+- E trocamos a versão no nosso `deployment.yaml` e fazemos a inserção do `readiness`:
+![img_1.png](readme_images/deployment-file.png)
+> O readiness contém as mesmas funções do liveness, porém o liveness é para garantir que o container está saudável
+> e o readiness para garantir que o container esteja pronto para requisições.
