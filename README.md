@@ -300,5 +300,11 @@ antes de ser incluído no balanceamento de carga.
 - Logo após modificar a aplicação, geramos o build e o push da imagem.
 - E trocamos a versão no nosso `deployment.yaml` e fazemos a inserção do `readiness`:
 ![img_1.png](readme_images/deployment-file.png)
-> O readiness contém as mesmas funções do liveness, porém o liveness é para garantir que o container está saudável
+
+> O **readiness** contém as mesmas funções do **liveness**, porém o liveness é para garantir que o container está saudável
 > e o readiness para garantir que o container esteja pronto para requisições.
+
+### Combinando o Liveness com o Readiness
+
+Para utilizarmos ambos juntos, precisamos deixar que os testes do liveness e readiness estejam conciliados em tempos, pois o
+readiness desvia o tráfego caso tenha erro e o liveness recria o pod caso a aplicação esteja com erro.
