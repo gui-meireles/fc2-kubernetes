@@ -344,3 +344,12 @@ protocolo TLS que vem por padrão, para isso:
 - E seguimos a receita de bolo com os comandos: `kubectl apply -f metrics-server.yaml`.
 - Podemos checar se a metrics-server está funcionando com o comando: `kubectl get apiservices`.
 - Ela estará com o nome de `v1beta1.metrics.k8s.io`.
+
+### Delimitando recursos nas aplicações
+
+Precisamos setar recursos em nossas aplicações, para que o pod não consuma todos os recursos do Node e consequentemente
+do Cluster.
+
+**Para isso:**
+Vamos em nosso arquivo `deployment.yaml` (Onde temos a imagem da nossa aplicação), e vamos setar nossos recursos:
+![img.png](readme_images/delimitando-recursos.png)
