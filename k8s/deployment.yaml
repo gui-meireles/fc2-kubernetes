@@ -20,10 +20,10 @@ spec:
 
           resources:
             requests:       # Delimita o mínimo que nosso container precisa para rodar, reservará no sistema a capacidade abaixo
-              cpu: 100m
+              cpu: "0.3"
               memory: 20Mi
             limits:         # Delimita o máximo de processamento que nosso container terá
-              cpu: 500m     # Divida esse valor pelo total de vCPU's que seu node possui, e você terá o total de replicas que ele suporta caso todas estejam no limite.
+              cpu: "0.3"    # Divida esse valor pelo total de vCPU's que seu node possui, e você terá o total de replicas que ele suporta caso todas estejam no limite.
               memory: 25Mi
 
           startupProbe:

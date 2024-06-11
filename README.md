@@ -353,3 +353,9 @@ do Cluster.
 **Para isso:**
 Vamos em nosso arquivo `deployment.yaml` (Onde temos a imagem da nossa aplicação), e vamos setar nossos recursos:
 ![img.png](readme_images/delimitando-recursos.png)
+
+> Para vermos isso na prática, aplique a configuração: `kubectl apply -f k8s/deployment.yaml`. <br>
+> 
+> E utilize o comando: 
+`kubectl top pod {nome_pod}`.
+![img.png](readme_images/command-top-pod.png)
