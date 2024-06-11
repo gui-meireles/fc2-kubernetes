@@ -320,3 +320,27 @@ Ou seja, só depois que ele verificar que o container está pronto, que ele vai 
 > Ele possui as mesmas configurações que o **liveness e readiness**, porém devemos nos atentar ao seguinte detalhe que é o
 `failureThreshold`, devemos configurar pelo tempo máximo que nossa aplicação demora para subir, e com isso podemos remover
 a função de `initialDelaySeconds` no **liveness e readiness**.
+ 
+---
+
+### Instalando o metrics-server
+
+O metrics-server é um componente do Kubernetes que coleta métricas de recursos de um cluster, como CPU e memória,
+e disponibiliza essas informações para que possam ser utilizadas por outros componentes, como o Horizontal Pod Autoscaler (HPA). 
+
+Site: https://github.com/kubernetes-sigs/metrics-server
+
+Porém, precisamos fazer uma alteração no deployment do metrics-server para rodar localmente, pois temos que remover o
+protocolo TLS que vem por padrão, para isso:
+
+- Caso você esteja utilizando esse projeto, ele já estará configurado na pasta do k8s com o nome de `metrics-server.yaml`.
+- Ou baixe o `.yaml` acessando: https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+> Precisamos adicionar esse argumento `- --kubelet-insecure-tls`, para que ao rodar o deployment o protocolo TLS
+> fique desabilitado. <br>
+> **Obs:** Precisamos desabilitar somente para rodar localmente.
+![img.png](readme_images/metrics-server-args.png)
+
+- E seguimos a receita de bolo com os comandos: `kubectl apply -f metrics-server.yaml`.
+- Podemos checar se a metrics-server está funcionando com o comando: `kubectl get apiservices`.
+- Ela estará com o nome de `v1beta1.metrics.k8s.io`.
