@@ -372,3 +372,17 @@ Para isso, criamos o arquivo **hpa.yaml**, e configuramos para ele auto-escalar 
 Logo após, aplique as configurações com: `kubectl apply -f k8s/hpa.yaml`.
 
 > Conseguimos ver nosso hpa com o comando: `kubectl get hpa`.
+
+
+#### Teste de stress com Fortio
+
+Você pode utilizar o Fortio para criar um teste de stress do seu Cluster, para isso, digite o comando abaixo:
+
+- `kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://goserver-service/healthz"`
+
+- Em outro terminal, veja a utilização do CPU pelo comando: `kubectl get hpa`.
+
+> Caso você queira ver melhor o teste de stress, diminua os recursos no `deployment.yaml` e aumente o `-qps` e o `-c` do
+> fortio e ele criará mais replicas.
+
+---
