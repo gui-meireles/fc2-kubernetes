@@ -359,3 +359,16 @@ Vamos em nosso arquivo `deployment.yaml` (Onde temos a imagem da nossa aplicaç�
 > E utilize o comando: 
 `kubectl top pod {nome_pod}`.
 ![img.png](readme_images/command-top-pod.png)
+
+---
+
+### O que é HPA ?
+
+O **Horizontal Pod Autoscaler (HPA)** é um recurso do Kubernetes que permite ajustar automaticamente o número de réplicas 
+de um conjunto de pods em execução com base na utilização da CPU ou de outras métricas definidas.
+
+Para isso, criamos o arquivo **hpa.yaml**, e configuramos para ele auto-escalar nosso Deployment que está em `deployment.yaml`.
+
+Logo após, aplique as configurações com: `kubectl apply -f k8s/hpa.yaml`.
+
+> Conseguimos ver nosso hpa com o comando: `kubectl get hpa`.
