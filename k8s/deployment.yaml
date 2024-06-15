@@ -61,7 +61,14 @@ spec:
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
+              readOnly: true
+            - mountPath: "/go/pvc"
+              name: goserver-volume     # Nome do volume criado abaixo
+
       volumes:
+        - name: goserver-volume
+          persistentVolumeClaim:
+            claimName: goserver-pvc     # Nome do claim que está no pvc.yaml
         - name: config
           configMap:
             name: configmap-family

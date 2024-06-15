@@ -386,3 +386,27 @@ Você pode utilizar o Fortio para criar um teste de stress do seu Cluster, para 
 > fortio e ele criará mais replicas.
 
 ---
+
+## Volumes persistentes
+
+Os volumes persistentes em **Kubernetes** são recursos que permitem que os dados armazenados em um contêiner persistam mesmo
+após o contêiner ser **_encerrado ou reiniciado_**.
+
+### O que é StorageClass ?
+
+`StorageClass` é um recurso do Kubernetes que define diferentes classes de armazenamento para os volumes persistentes
+usados por pods em um cluster.
+
+- Para reservamos um espaço do armazenamento, utilizamos o kind `PersistentVolumeClaim` e passamos algumas configurações,
+elas estão em `pvc.yaml`.
+- Aplicamos com o comando: `kubectl apply -f k8s/pvc.yaml`.
+- E podemos checar com: `kubectl get pvc`, porém vemos que ele está `Pending`, e para isso precisamos fazer o bind com o `storageclass`.
+
+> Precisamos adicionar esse **_Claim_** em nosso `deployment.yaml`, para isso setamos as configurações em `volumes` e `volumeMounts`.
+![img.png](readme_images/pvc-help.png)
+
+- E por fim, aplicamos a configuração: `kubectl apply -f k8s/deployment.yaml`.
+- E vemos que mudou em: `kubectl get pvc`.
+
+**Importante:** Em nosso `deployment.yaml` configuramos o path no pod que será feito a _persistência dos dados_, então tudo
+que estiver dentro do path `/go/pvc` **não será perdido** caso o pod seja deletado.
