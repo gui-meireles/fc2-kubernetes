@@ -419,5 +419,21 @@ cada pod tenha um **estado específico e persistente**.
 Ele é utilizado para aplicações que necessitam de **armazenamento persistente** e de **identidades únicas**, como bancos
 de dados e sistemas de mensageria.
 
-- Utilizamos o arquivo `statefulset.yaml` para criar uma imagem do mysql em nossos pods em sequência, igual a uma pilha,
+> Utilizamos o arquivo `statefulset.yaml` para criar uma imagem do mysql em nossos pods em sequência, igual a uma pilha,
 ou seja, cada replica desse pod será criado 1 por 1.
+
+### O que é headless service ?
+
+Um serviço **headless** no Kubernetes é um tipo de serviço que **não possui um cluster IP** associado a ele. Em vez disso,
+ele retorna diretamente os **endereços IP dos pods** que fazem parte do serviço.
+
+Isso é útil em cenários onde é necessário se comunicar diretamente com cada instância do pod, por exemplo,
+em bancos de dados distribuídos.
+
+#### Na prática:
+
+**Foi utilizado o arquivo** `mysql-service-h.yaml`.
+
+> Dentro do bash de um pod foi realizado um teste de ping para a service do mysql, e logo após, foi feito um ping direcionado
+> para o nome de uma das replicas dos pods em específico.
+![img.png](readme_images/headless-example.png)

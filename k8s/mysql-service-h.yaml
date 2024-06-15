@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-h       # Deve ser o mesmo nome do serviceName do 'statefulset.yaml'
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+  clusterIP: None     # Ele utilizará DNS para se conectar no Pod
