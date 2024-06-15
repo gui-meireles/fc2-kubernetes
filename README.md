@@ -410,3 +410,14 @@ elas estão em `pvc.yaml`.
 
 **Importante:** Em nosso `deployment.yaml` configuramos o path no pod que será feito a _persistência dos dados_, então tudo
 que estiver dentro do path `/go/pvc` **não será perdido** caso o pod seja deletado.
+
+### O que é StatefulSet ?
+
+StatefulSet é um recurso do Kubernetes que permite a criação de pods com **identidades únicas e estáveis**, garantindo que
+cada pod tenha um **estado específico e persistente**.
+
+Ele é utilizado para aplicações que necessitam de **armazenamento persistente** e de **identidades únicas**, como bancos
+de dados e sistemas de mensageria.
+
+- Utilizamos o arquivo `statefulset.yaml` para criar uma imagem do mysql em nossos pods em sequência, igual a uma pilha,
+ou seja, cada replica desse pod será criado 1 por 1.
