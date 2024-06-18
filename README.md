@@ -437,3 +437,17 @@ em bancos de dados distribuídos.
 > Dentro do bash de um pod foi realizado um teste de ping para a service do mysql, e logo após, foi feito um ping direcionado
 > para o nome de uma das replicas dos pods em específico.
 ![img.png](readme_images/headless-example.png)
+
+
+### Criando volumes dinamicamente com statefulset
+
+Caso você necessite criar um volume para cada replica no statefulset, você pode utilizar o seguinte código no arquivo
+`statefulset.yaml`:
+
+![img.png](readme_images/volumes-dinamicos.png)
+
+E poderá ver os volumes criados em: `kubectl get pvc`.
+
+**_Obs:_** Mesmo que você delete o pod, o volume não será perdido e assim que o pod for recriado, ele terá o volume atrelado.
+
+---
