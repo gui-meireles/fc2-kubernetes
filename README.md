@@ -451,3 +451,27 @@ E poderá ver os volumes criados em: `kubectl get pvc`.
 **_Obs:_** Mesmo que você delete o pod, o volume não será perdido e assim que o pod for recriado, ele terá o volume atrelado.
 
 ---
+
+## Ingress
+
+O Ingress é um **recurso do Kubernetes** que permite gerenciar o acesso externo aos serviços dentro de um cluster.
+
+Ele atua como um _**controlador de tráfego**_, direcionando as solicitações dos clientes para os serviços apropriados
+com base em regras de roteamento definidas.
+
+O Ingress **facilita** a configuração de `regras de roteamento`, `balanceamento de carga` e `terminação de SSL` para os
+serviços, tornando mais fácil o acesso externo aos aplicativos implantados no cluster Kubernetes.
+
+**Exemplo:**
+
+Temos 10 **microserviços** em nosso cluster.
+
+Para facilitar a comunicação entre eles fora do cluster, podemos utilizar o**ingress** que funcionará como um
+`LoadBalancer` e fornecerá um **único IP** para acessar todos os microserviços, precisando apenas alterar o
+`caminho do endpoint` e o `corpo da requisição`.
+
+Podemos criar o `service.yaml` com o type `ClusterIP`, pois ele não precisará de um IP externo para ser acessado, isso
+economizará nos custos da aplicação.
+
+> O arquivo `ingress.yaml` é um exemplo básico de configuração do ingress, mas é recomendado ver o módulo `Ingress` 
+> do curso de   Kubernetes do FullCycle.
