@@ -474,4 +474,21 @@ Podemos criar o `service.yaml` com o type `ClusterIP`, pois ele não precisará 
 economizará nos custos da aplicação.
 
 > O arquivo `ingress.yaml` é um exemplo básico de configuração do ingress, mas é recomendado ver o módulo `Ingress` 
-> do curso de   Kubernetes do FullCycle.
+> do curso de Kubernetes do FullCycle.
+
+---
+
+### O que é Cert-manager ?
+
+O **Cert-manager** é uma ferramenta open-source que ajuda a automatizar a gestão de `certificados TLS` em ambientes Kubernetes.
+
+Ele facilita a **emissão**, **renovação** e **revogação de certificados SSL/TLS**, permitindo que os desenvolvedores se concentrem
+mais no desenvolvimento de aplicativos e menos na administração de certificados de segurança.
+
+> É utilizado para sua aplicação WEB ter o protocolo `HTTPS`
+
+Para fazer a instalação em seu provedor cloud, utilize: https://cert-manager.io/docs/installation/
+
+Para gerar os certificados TLS, podemos utilizar o arquivo: `cluster-issuer.yaml` e ajustar o `ingress.yaml`.
+
+> Para mais informações, acesse o módulo de **Cert-manager** no curso de Kubernetes na FullCycle.

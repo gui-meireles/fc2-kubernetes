@@ -4,6 +4,8 @@ metadata:
   name: ingress-host
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt"       # Comente caso não utilize o protocolo TLS
+    ingress.kubernetes.io/force-ssl-redirect: "true"    # Caso o usuário acesse por http ele redireciona para https
 spec:
   rules:
     - host: "ingress.fullcycle.com.br"
@@ -16,3 +18,7 @@ spec:
                 name: goserver-service    # Nome do serviço que será chamado ao acessar esse PATH
                 port:
                   number: 80
+  tls:
+    - hosts:
+      - "ingress.fullcycle.com.br"
+      secretName: letsencrypt-tls
