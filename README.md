@@ -492,3 +492,21 @@ Para fazer a instalação em seu provedor cloud, utilize: https://cert-manager.i
 Para gerar os certificados TLS, podemos utilizar o arquivo: `cluster-issuer.yaml` e ajustar o `ingress.yaml`.
 
 > Para mais informações, acesse o módulo de **Cert-manager** no curso de Kubernetes na FullCycle.
+
+---
+
+## O que é Namespaces ?
+
+**Namespace** é um recurso do Kubernetes que permite dividir o cluster em `espaços virtuais separados`,
+onde cada recurso pode ser isolado e ter sua própria visão dos recursos disponíveis.
+
+- Com o comando: `kubectl get ns`, podemos ver os namespaces do nosso cluster.
+
+
+- Com o comando: `kubectl get pods -n={namespace}`, podemos ver todos os pods de um determinado namespace.
+
+
+- Com o comando: `kubectl create ns {nome}`, podemos criar um novo namespace.
+
+
+- Para aplicar um deploy em um namespace, utilize o comando: `kubectl apply -f {arquivo.yaml} -n={namespace}`
