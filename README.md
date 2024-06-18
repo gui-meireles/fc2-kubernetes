@@ -509,4 +509,25 @@ onde cada recurso pode ser isolado e ter sua própria visão dos recursos dispon
 - Com o comando: `kubectl create ns {nome}`, podemos criar um novo namespace.
 
 
-- Para aplicar um deploy em um namespace, utilize o comando: `kubectl apply -f {arquivo.yaml} -n={namespace}`
+- Para aplicar um deploy em um namespace, utilize o comando: `kubectl apply -f {arquivo.yaml} -n={namespace}`.
+
+#### Criando contextos por namespaces Dev e Prod
+
+Em situações do cotidiano, podemos ter contextos de prod e dev, porém podemos acabar realizando o deployment no contexto
+indevido, para isso, podemos criar um contexto em nosso cluster e garantir que os deploys serão feitos em um único contexto.
+
+- Com o comando: `kubectl config view`, podemos checar o nome e usuário do cluster.
+- Para criar um contexto dev, utilize: `kubectl config set-context dev --namespace=dev --cluster={nome_cluster} --user={usuario_cluster}`.
+- Para aplicar o contexto dev, utilize: `kubectl config use-context dev`.
+- Para checar se o contexto é dev, utilize: `kubectl config current-context`.
+
+---
+
+### Service Accounts é importante ?
+
+Eles são usados para conceder permissões específicas aos Pods para acessar recursos dentro do cluster,
+como **APIs**, **volumes** e outros serviços.
+
+Não é recomendado usar a Service Account `default` em um ambiente de produção, pois ela possui permissões amplas
+e genéricas dentro do cluster, o que pode representar um risco de segurança para sua aplicação.
+
