@@ -531,3 +531,13 @@ como **APIs**, **volumes** e outros serviços.
 Não é recomendado usar a Service Account `default` em um ambiente de produção, pois ela possui permissões amplas
 e genéricas dentro do cluster, o que pode representar um risco de segurança para sua aplicação.
 
+### Criando Service Account 
+
+Para criar uma **Service Account** com hierarquia de privilégios, você pode utilizar o arquivo em
+`k8s/namespaces/security.yaml` e nele criaremos a Service Account e setaremos algumas roles de exemplo.
+
+Aplique essa configuração com o comando: `kubectl apply -f k8s/namespaces/security.yaml`.
+
+E aplicaremos essas roles no `k8s/namespaces/deployment.yaml` na linha 14: `serviceAccountName: server`.
+
+**_Obs:_** Para ver o ApiGroup do recurso que você quer limitar, rode o comando: `kubectl api-resources`.

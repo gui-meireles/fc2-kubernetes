@@ -11,6 +11,7 @@ spec:
       labels:
         app: server
     spec:
+      serviceAccountName: server
       containers:
         - name: server
           image: guilhermemmnn/hello-go:v4

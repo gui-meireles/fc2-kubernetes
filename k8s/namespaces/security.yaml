@@ -1,0 +1,36 @@
+# Aqui será criado o Service Account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: server
+
+---
+
+# Aqui será criado as Roles
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: server-read
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["get", "watch", "list"]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "watch", "list"]
+
+---
+
+# Aqui será feito o bind das Roles criadas com a Service Account
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: server-read-bind
+subjects:
+  - kind: ServiceAccount
+    name: server                        # Nome do ServiceAccount (linha 5)
+    namespace: dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role                            # Vamos atribuir uma Role para o subject acima
+  name: server-read                     # Nome da Role (linha 13)
